@@ -21,4 +21,34 @@ questions.create = function(req, res) {
   });
 };
 
+questions.update = function(req, res) {
+  // console.log(req.params.id);
+  console.log(req.query.vote);
+  Question.findById(req.params.id, function(err, question) {
+    if(err) {
+      throw err;
+    }
+
+    if(req.query.vote === 'up') {
+      console.log('up');
+      question.voteUp(function(err, question) {
+        if(err) {
+          return res.json(err);
+        }
+        return res.json(question);
+      });
+    }
+
+    if(req.query.vote === 'down') {
+      console.log('down');
+      question.voteDown(function(err, question) {
+        if(err) {
+          return res.json(err);
+        }
+        return res.json(question);
+      });
+    }
+  });
+};
+
 module.exports = questions;

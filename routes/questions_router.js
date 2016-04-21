@@ -6,7 +6,8 @@ router.route('/')
   .get(questions.index)
   .post(questions.create);
 
+router.route('/:id')
+  .put(questions.update);
 
-// create-update-path-for-questions
 
 module.exports = router;

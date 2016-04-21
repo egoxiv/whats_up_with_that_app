@@ -7,14 +7,14 @@ var QuestionSchema = mongoose.Schema({
   voteCount: Number
 });
 
-QuestionSchema.methods.voteUp = function() {
+QuestionSchema.methods.voteUp = function(cb) {
   this.voteCount++;
-  console.log(this.voteCount);
+  this.save(cb);
 };
 
-QuestionSchema.methods.voteDown = function() {
+QuestionSchema.methods.voteDown = function(cb) {
   this.voteCount--;
-  console.log(this.voteCount);
+  this.save(cb);
 };
 
 var Question = mongoose.model('Question', QuestionSchema);

@@ -16,10 +16,10 @@ Question.remove({}, function(){
 });
 
 var q = new Question({
-  title: "How do methods work",
+  title: "Methods",
   body: "Method in Mongoose are a crazy thing!",
   voteCount: 2
 });
 q.save();
-q.voteUp();
+q.voteDown();
 
