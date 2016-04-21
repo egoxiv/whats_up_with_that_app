@@ -4,9 +4,9 @@ var Question = require('./models/question');
 Question.remove({}, function(){
 
   Question.create([
-    {title: "How do birds work?", body: "They can fly right?"},
-    {title: "How can I name a hurricane?"},
-    {title: "Why's coding gotta be so hard?", body: "Just do what I want."}
+    {title: "How do birds work?", body: "They can fly right?", voteCount: 30},
+    {title: "How can I name a hurricane?", voteCount: 20},
+    {title: "Why's coding gotta be so hard?", body: "Just do what I want.", voteCount: 50}
   ], function(err, questions){
     if (err) console.log(err);
     console.log('seeded ' + questions.length + ' questions');
@@ -14,3 +14,12 @@ Question.remove({}, function(){
   });
 
 });
+
+var q = new Question({
+  title: "How do methods work",
+  body: "Method in Mongoose are a crazy thing!",
+  voteCount: 2
+});
+q.save();
+q.voteUp();
+
