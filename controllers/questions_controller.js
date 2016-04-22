@@ -2,10 +2,23 @@ var Question = require('../models/question');
 var questions = {};
 
 questions.index = function(req, res) {
-  Question.find({}, function(err, questions) {
-    if (err) return res.json(err);
-    res.json(questions);
-  });
+  console.log(req.query);
+  console.log(req.query.category);
+  if(req.query.category) {
+    Question.findByCategory(req.query.category, function(err, questions) {
+      if (err) {
+        return res.json(err);
+      }
+      return res.json(questions);
+    });
+  } else {
+    Question.find({}, function(err, questions) {
+      if(err) {
+        return err;
+      }
+      return res.json(questions);
+    });
+  }
 };
 
 questions.create = function(req, res) {
